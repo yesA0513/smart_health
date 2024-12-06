@@ -5,8 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>보건소 알림e - 도움말</title>
     <link rel="stylesheet" href="/css/service.css">
+    <link rel="stylesheet" href="/css/guide.css">
+    <meta name="localStorage-path" content="/">
 </head>
 <body>
-    
+    <div class="modal-overlay" id="guideModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeGuide()">닫기</button>
+            <h2>보건소 알림e 사용 가이드</h2>
+            
+            <div class="guide-item">
+                <h3>1. 원하는 서비스 선택하기</h3>
+                <p>메인 화면에서 필요한 서비스를 선택해주세요.</p>
+            </div>
+
+            <div class="guide-item">
+                <h3>2. 고대비 모드</h3>
+                <p>화면 우측 상단의 고대비 버튼을 클릭하면 텍스트와 배경의 대비를 높여 가독성을 향상시킬 수 있습니다.</p>
+            </div>
+
+            <div class="guide-item">
+                <h3>3. 도움말 다시보기</h3>
+                <p>언제든 상단 메뉴의 '도움말' 버튼을 클릭하여 이 가이드를 다시 확인하실 수 있습니다.</p>
+            </div>
+        </div>
+    </div>
+
+    <button onclick="showGuide()" class="help-btn">도움말 보기</button>
+
+    <script src="/scripts/guide.js"></script>
 </body>
 </html>

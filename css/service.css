@@ -1,0 +1,109 @@
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 500px;
+}
+
+h1 {
+    text-align: center;
+    margin: 50px;
+    color: #333;
+}
+
+.disease-list {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.disease-item {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 20px;
+    transition: all 0.2s ease-in-out;
+}
+
+.disease-item:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.disease-item h2 {
+    color: #1a73e8;
+    margin-bottom: 10px;
+}
+
+.disease-item p {
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.disease-item ul {
+    padding-left: 20px;
+}
+
+.disease-item li {
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.back-button {
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 8px 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #212529;
+    transition: all 0.2s ease-in-out;
+}
+
+.back-button:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.home-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 8px 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #212529;
+    z-index: 1000;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.home-button i {
+    font-size: 1.2em;
+}
+
+.home-button:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 반응형 디자인을 위한 미디어 쿼리 */
+@media (max-width: 768px) {
+    .container {
+        padding: 0;
+    }
+    
+    h1 {
+        margin: 30px;
+    }
+}
