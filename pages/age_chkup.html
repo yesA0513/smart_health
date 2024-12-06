@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>보건소 알림e - 연령별 검사 안내</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/guide.css">
+    <link rel="stylesheet" href="/css/age_chkup.css">
+    <meta name="localStorage-path" content="/">
+    <script src="/scripts/highContrast.js"></script>
+    <script src="/scripts/darkMode.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/scripts/navigation.js"></script>
+</head>
+<body>
+    <!-- 로딩 표시 -->
+    <div class="loader">
+        <i class="fas fa-circle-notch fa-spin fa-3x"></i>
+    </div>
+
+    <!-- 기존 컨텐츠를 wrapper로 감싸기 -->
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="header">
+                <p>연령별 검진 안내</p>
+            </div>
+            
+            <div class="content">
+                <div class="controls">
+                    <button class="controls__item" onclick="showGuide()">
+                        <i class="fas fa-question-circle"></i>
+                        도움말
+                    </button>
+                    <button class="controls__item" onclick="toggleHighContrast()">
+                        <i class="fas fa-adjust"></i>
+                        고대비
+                    </button>
+                    <!-- 홈으로 가기 버튼 수정 -->
+                    <button class="controls__item" onclick="goToHome()">
+                        <i class="fas fa-home"></i>
+                        홈으로
+                    </button>
+                </div>
+
+                <div id="checkup-form" class="content__form">
+                    <div class="input-group">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" placeholder="이름을 입력하세요" required>
+                        
+                        <label for="gender">성별</label>
+                        <select id="gender" required>
+                            <option value="male">남성</option>
+                            <option value="female">여성</option>
+                        </select>
+                        
+                        <label for="age">나이</label>
+                        <input type="number" id="age" placeholder="나이를 입력하세요" required>
+                    </div>
+
+                    <button id="checkup-btn" class="submit-btn">
+                        <i class="fas fa-search"></i>
+                        검진 확인
+                    </button>
+                </div>
+
+                <div id="checkup-results" class="results-container" style="display:none;">
+                    <div class="results-content">
+                        <h2>받아야 할 검진</h2>
+                        <ul id="required-checkups" class="checkup-list"></ul>
+                        
+                        <h2>무료로 받을 수 있는 검진</h2>
+                        <ul id="free-checkups" class="checkup-list"></ul>
+
+                        <button id="back-btn" class="controls__item">
+                            <i class="fas fa-arrow-left"></i>
+                            돌아가기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>보건소 알림e</p>
+            <p>Copyright 2024 | 김노아,박준현 | All rights reserved.</p>
+        </div>
+    </div>
+
+    <!-- 도움말 모달 -->
+    <div class="modal-overlay" id="guideModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeGuide()">닫기</button>
+            <h2>연령별 검진 안내</h2>
+            
+            <div class="guide-item">
+                <h3>주요 기능</h3>
+                <p>연령과 성별에 따라 권장되는 검진 목록을 확인할 수 있습니다.</p>
+            </div>
+
+            <div class="guide-item">
+                <h3>화면 설정</h3>
+                <p>우측 상단의 '고대비' 버튼으로 화면의 가독성을 높일 수 있습니다.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/age_chkup.js"></script>
+    <script src="/scripts/guide.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('darkMode');
+        
+        if (savedTheme === 'true' || (savedTheme === null && prefersDarkMode)) {
+            document.body.classList.add('dark-mode');
+        }
+
+        const isHighContrast = localStorage.getItem('highContrast') === 'true';
+        if (isHighContrast) {
+            document.body.classList.add('high-contrast');
+        }
+
+        setTimeout(() => {
+            document.querySelector('.loader').classList.add('hidden');
+            document.querySelector('.content-wrapper').classList.add('ready');
+        }, 100);
+    });
+    </script>
+</body>
+</html>

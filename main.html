@@ -7,45 +7,58 @@
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/guide.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="/scripts/darkMode.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <p>보건소 알림e</p>
+    <!-- 로딩 표시 -->
+    <div class="loader">
+        <i class="fas fa-circle-notch fa-spin fa-3x"></i>
+    </div>
+
+    <!-- 기존 컨텐츠를 wrapper로 감싸기 -->
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="header">
+                <p>보건소 알림e</p>
+            </div>
+            <div class="content">
+                <div class="controls">
+                    <button class="controls__item" onclick="showGuide()">
+                        <i class="fas fa-question-circle"></i>
+                        도움말
+                    </button>
+                    <button class="controls__item" onclick="toggleHighContrast()">
+                        <i class="fas fa-adjust"></i>
+                        고대비
+                    </button>
+                </div>
+                <div class="content__item">
+                    <a href="/pages/disez_list.html" class="content__item__link">
+                        <i class="fas fa-disease"></i>
+                        <span>질병/질환 목록</span>
+                    </a>
+                    <a href="/pages/age_chkup.html" class="content__item__link">
+                        <i class="fas fa-user-clock"></i>
+                        <span>연령별 검사 안내</span>
+                    </a>
+                    <a href="/pages/location.html" class="content__item__link">
+                        <i class="fas fa-hospital-alt"></i>
+                        <span>가까운 보건소 찾기</span>
+                    </a>
+                    <a href="/pages/reservation.html" class="content__item__link">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>진료 예약</span>
+                    </a>
+                    <a href="/pages/chk_status.html" class="content__item__link">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>검사 결과 조회</span>
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="content">
-            <div class="controls">
-                <button class="controls__item" onclick="showGuide()">
-                    <i class="fas fa-question-circle"></i>
-                    도움말
-                </button>
-                <button class="controls__item" onclick="toggleHighContrast()">
-                    <i class="fas fa-adjust"></i>
-                    고대비
-                </button>
-            </div>
-            <div class="content__item">
-                <a href="/pages/disez_list.html" class="content__item__link">
-                    <i class="fas fa-disease"></i>
-                    <span>질병/질환 목록</span>
-                </a>
-                <a href="/pages/age_list.html" class="content__item__link">
-                    <i class="fas fa-user-clock"></i>
-                    <span>연령별 검사 안내</span>
-                </a>
-                <a href="/pages/location.html" class="content__item__link">
-                    <i class="fas fa-hospital-alt"></i>
-                    <span>가까운 보건소 찾기</span>
-                </a>
-                <a href="/pages/service.html" class="content__item__link">
-                    <i class="fas fa-calendar-check"></i>
-                    <span>진료 예약</span>
-                </a>
-                <a href="/pages/test_list.html" class="content__item__link">
-                    <i class="fas fa-clipboard-list"></i>
-                    <span>검사 결과 조회</span>
-                </a>
-            </div>
+        <div class="footer">
+            <p>보건소 알림e</p>
+            <p>Copyright 2024 | 김노아,박준현 | All rights reserved.</p>
         </div>
     </div>
 
@@ -67,12 +80,29 @@
         </div>
     </div>
 
-    <div class="footer">
-        <p>보건소 알림e</p>
-        <p>Copyright 2024 | 김노아,박준현 | All rights reserved.</p>
-    </div>
+
 
     <script src="./scripts/guide.js"></script>
     <script src="./scripts/contrast.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('darkMode');
+        
+        if (savedTheme === 'true' || (savedTheme === null && prefersDarkMode)) {
+            document.body.classList.add('dark-mode');
+        }
+
+        const isHighContrast = localStorage.getItem('highContrast') === 'true';
+        if (isHighContrast) {
+            document.body.classList.add('high-contrast');
+        }
+
+        setTimeout(() => {
+            document.querySelector('.loader').classList.add('hidden');
+            document.querySelector('.content-wrapper').classList.add('ready');
+        }, 150); // 300ms로 증가
+    });
+    </script>
 </body>
 </html>

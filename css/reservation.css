@@ -1,0 +1,620 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+/* 각 페이지의 CSS 파일 상단에 추가 */
+.content-wrapper {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.content-wrapper.ready {
+    opacity: 1;
+    visibility: visible;
+}
+
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader.hidden {
+    display: none;
+}
+
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+}
+
+.step.active h2 {
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+/* 서비스 버튼 그리드 */
+.service-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.service-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    padding: 30px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.service-button i {
+    font-size: 4em;
+    margin-bottom: 20px;
+    color: #e74c3c;
+}
+
+.service-button span {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #212529;
+}
+
+.service-button:hover {
+    transform: translateY(-5px);
+}
+
+.service-button:nth-child(1):hover {
+    background: linear-gradient(135deg, #ffeaea, #fff);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.2);
+}
+
+.service-button:nth-child(2):hover {
+    background: linear-gradient(135deg, #e8f4ff, #fff);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+}
+
+.service-button:nth-child(3):hover {
+    background: linear-gradient(135deg, #e8fff0, #fff);
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.2);
+}
+
+.service-button:nth-child(4):hover {
+    background: linear-gradient(135deg, #fff5e5, #fff);
+    box-shadow: 0 5px 15px rgba(243, 156, 18, 0.2);
+}
+
+/* 입력 필드 스타일 */
+.input-group {
+    margin: 2rem 0;
+}
+
+label {
+    display: block;
+    margin: 1rem 0 0.5rem;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #212529;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.6rem;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    font-family: "Pretendard", sans-serif;
+}
+
+/* 시간 선택 버튼 스타일 */
+.time-slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.time-slot {
+    padding: 15px;
+    font-size: 1.6rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #e8f4ff, #fff);
+    color: #212529;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.1);
+}
+
+.time-slot:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+}
+
+.time-slot.selected {
+    background: linear-gradient(135deg, #d4ebff, #e8f4ff);
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.2);
+}
+
+/* 버튼 그룹 스타일 */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.button-group button {
+    flex: 1;
+}
+
+/* 고대비 모드 스타일 */
+body.high-contrast .service-button {
+    background: #000;
+    border: 2px solid #fff;
+}
+
+body.high-contrast .service-button i,
+body.high-contrast .service-button span {
+    color: #fff;
+}
+
+body.high-contrast .time-slot {
+    background: #000;
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+body.high-contrast .time-slot.selected {
+    background: #333;
+}
+
+body.high-contrast input {
+    background: #000;
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+body.high-contrast label {
+    color: #fff;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+    .service-buttons {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0;
+    }
+
+    .step {
+        padding: 0 1rem;
+    }
+
+    .time-slots {
+        padding: 0 1rem;
+    }
+
+    .input-group {
+        margin: 1rem 0;
+        padding: 0 1rem;
+    }
+
+    .button-group {
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .service-buttons {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+
+    .step {
+        padding: 0 1rem;
+    }
+
+    .time-slots {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 1rem;
+    }
+
+    .input-group {
+        padding: 0 1rem;
+    }
+
+    .button-group {
+        flex-direction: column;
+        padding: 0 1rem;
+    }
+
+    .service-button {
+        height: 150px;
+    }
+
+    .service-button i {
+        font-size: 3em;
+    }
+
+    .service-button span {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 1200px) {
+    .controls {
+        margin: 1rem;
+        padding: 0;
+    }
+}
+
+/* 서비스 버튼 색상 */
+.service-button:nth-child(1) {
+    background: linear-gradient(135deg, #ffeaea, #fff);
+    box-shadow: 0 2px 10px rgba(231, 76, 60, 0.1);
+}
+
+.service-button:nth-child(2) {
+    background: linear-gradient(135deg, #e8f4ff, #fff);
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.1);
+}
+
+.service-button:nth-child(3) {
+    background: linear-gradient(135deg, #e8fff0, #fff);
+    box-shadow: 0 2px 10px rgba(46, 204, 113, 0.1);
+}
+
+.service-button:nth-child(4) {
+    background: linear-gradient(135deg, #fff5e5, #fff);
+    box-shadow: 0 2px 10px rgba(243, 156, 18, 0.1);
+}
+
+/* 서비스 버튼 아이콘 색상 */
+.service-button:nth-child(1) i { color: #e74c3c; }
+.service-button:nth-child(2) i { color: #3498db; }
+.service-button:nth-child(3) i { color: #2ecc71; }
+.service-button:nth-child(4) i { color: #f39c12; }
+
+
+@media (max-width: 1024px) {
+    .content__form,
+    .results-container,
+    .result-container {
+        margin: 2rem 1.5rem;  /* 좌우 여백 조정 */
+        padding: 2rem;  /* 내부 여백 정 */
+        width: auto;  /* 자동 너비 설정 */
+        max-width: none;  /* 최대 너비 제한 해제 */
+    }
+
+    .input-group {
+        margin: 1.5rem 0;  /* 입력 그룹 여백 조정 */
+    }
+
+    /* 모바일에의 추가 조정 */
+    @media (max-width: 768px) {
+        .content__form,
+        .results-container,
+        .result-container {
+            margin: 1rem;
+            padding: 1.5rem;
+        }
+
+        label {
+            font-size: 1.6rem;
+        }
+
+        input, select {
+            font-size: 1.4rem;
+        }
+
+        .submit-btn {
+            font-size: 1.6rem;
+        }
+    }
+}
+
+/* 다크모드 스타일 */
+body.dark-mode {
+    background-color: #121212;
+    color: #fff;
+}
+
+body.dark-mode .header {
+    color: #fff;
+}
+
+/* 서비스 버튼 다크모드 */
+body.dark-mode .service-button {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(231, 76, 60, 0.2);
+    color: #fff;
+}
+
+body.dark-mode .service-button:hover {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.25), #2d2d2d);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+}
+
+body.dark-mode .service-button i {
+    color: #e74c3c;
+    opacity: 0.9;
+}
+
+/* 입력 필드 다크모드 */
+body.dark-mode label {
+    color: #fff;
+}
+
+body.dark-mode input {
+    background: #2d2d2d;
+    border: 1px solid #444;
+    color: #fff;
+}
+
+/* 시간 선택 버튼 다크모드 */
+body.dark-mode .time-slot {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.2);
+    color: #fff;
+}
+
+body.dark-mode .time-slot:hover {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.25), #2d2d2d);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+body.dark-mode .time-slot.selected {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.35), #2d2d2d);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+}
+
+/* 컨트롤 버튼 다크모드 */
+body.dark-mode .controls__item {
+    color: #fff;
+}
+
+body.dark-mode .controls__item:nth-child(1) {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.2);
+}
+
+body.dark-mode .controls__item:nth-child(2) {
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(155, 89, 182, 0.2);
+}
+
+body.dark-mode .controls__item:hover {
+    background: #2d2d2d;
+}
+
+body.dark-mode .controls__item:nth-child(1) i {
+    color: #3498db;
+    opacity: 0.9;
+}
+
+body.dark-mode .controls__item:nth-child(2) i {
+    color: #9b59b6;
+    opacity: 0.9;
+}
+
+/* 모바일 대응 수정 */
+@media (max-width: 728px) {
+    .controls__item {
+        padding: 12px 15px;
+        font-size: 1.2rem;
+        flex-direction: column;  /* 세로 배치로 변경 */
+        gap: 5px;  /* 아이콘과 텍스트 사이 간격 조정 */
+        text-align: center;  /* 텍스트 중앙 정렬 */
+        min-width: 70px;  /* 최소 너비 설정 */
+    }
+    
+    .controls__item i {
+        font-size: 1.8rem;  /* 아이콘 크기 유지 */
+        margin-bottom: 2px;  /* 아이콘 아래 여백 추가 */
+    }
+
+    .controls {
+        margin: 1rem;
+        margin-bottom: 2rem;
+        gap: 8px;  /* 버튼 사이 간격 줄임 */
+    }
+}
+
+/* 더 작은 화면에서 추가 조정 */
+@media (max-width: 375px) {
+    .controls__item {
+        padding: 10px 12px;
+        font-size: 1.1rem;
+        min-width: 60px;
+    }
+    
+    .controls__item i {
+        font-size: 1.6rem;
+    }
+}
+
+/* 비스 버튼 색상 다크모드 */
+body.dark-mode .service-button:nth-child(1) {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(231, 76, 60, 0.2);
+}
+
+body.dark-mode .service-button:nth-child(2) {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.2);
+}
+
+body.dark-mode .service-button:nth-child(3) {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(46, 204, 113, 0.2);
+}
+
+body.dark-mode .service-button:nth-child(4) {
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(243, 156, 18, 0.2);
+}
+
+/* 서비스 버튼 아이콘 색상 다크모드 */
+body.dark-mode .service-button:nth-child(1) i { color: #e74c3c; opacity: 0.9; }
+body.dark-mode .service-button:nth-child(2) i { color: #3498db; opacity: 0.9; }
+body.dark-mode .service-button:nth-child(3) i { color: #2ecc71; opacity: 0.9; }
+body.dark-mode .service-button:nth-child(4) i { color: #f39c12; opacity: 0.9; }
+
+body.dark-mode .footer {
+    background-color: #121212;
+}
+
+body.dark-mode .footer p {
+    color: #6c757d;
+}
+
+/* 모달 다크모드 */
+body.dark-mode .modal-content {
+    background: #1e1e1e;
+    color: #fff;
+}
+
+body.dark-mode .close-btn {
+    color: #fff;
+    background: #2d2d2d;
+}
+
+body.dark-mode .guide-item h3 {
+    color: #fff;
+}
+
+body.dark-mode .guide-item p {
+    color: #adb5bd;
+}
+
+/* 다크모드 버튼 텍스트 수정 */
+body.dark-mode .submit-btn,
+body.dark-mode .prev-btn,
+body.dark-mode .next-btn,
+body.dark-mode button {
+    color: #fff;  /* 모든 버튼의 텍스트 색상을 흰색으로 */
+}
+
+body.dark-mode .button-group button {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), #1e1e1e);
+    color: #fff;
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.2);
+}
+
+body.dark-mode .button-group button:hover {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.25), #2d2d2d);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+/* 서비스 버튼 텍스트 수정 */
+body.dark-mode .service-button span {
+    color: #fff;  /* 텍스트 색상을 흰색으로 */
+    font-weight: 600;  /* 글씨 두께 유지 */
+}
+
+/* 각 서비스 버튼별 스타일 유지하면서 텍스트 보이게 */
+body.dark-mode .service-button:nth-child(1) span { color: #fff; }
+body.dark-mode .service-button:nth-child(2) span { color: #fff; }
+body.dark-mode .service-button:nth-child(3) span { color: #fff; }
+body.dark-mode .service-button:nth-child(4) span { color: #fff; }
+
+/* 고대비 모드 */
+body.high-contrast .home-button {
+    background: #000;
+    color: #fff;
+    border: 2px solid #fff;
+    box-shadow: none;
+}
+
+body.high-contrast .home-button:hover {
+    background: #333;
+}
+
+body.high-contrast .home-button i {
+    color: #fff;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .home-button {
+        right: 20px;
+        padding: 12px 20px;
+        font-size: 1.4rem;
+    }
+    
+    .home-button i {
+        font-size: 1.6rem;
+    }
+}
+
+/* 다크모드 서비스 버튼 스타일 */
+body.dark-mode .service-button:nth-child(1) {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(231, 76, 60, 0.2);
+}
+
+body.dark-mode .service-button:nth-child(2) {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.2);
+}
+
+body.dark-mode .service-button:nth-child(3) {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(46, 204, 113, 0.2);
+}
+
+body.dark-mode .service-button:nth-child(4) {
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(243, 156, 18, 0.2);
+}
+
+/* 다크모드 호버 효과 */
+body.dark-mode .service-button:nth-child(1):hover {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.25), #2d2d2d);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+}
+
+body.dark-mode .service-button:nth-child(2):hover {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.25), #2d2d2d);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+body.dark-mode .service-button:nth-child(3):hover {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.25), #2d2d2d);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+}
+
+body.dark-mode .service-button:nth-child(4):hover {
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.25), #2d2d2d);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+}
+
+/* 다크모드 아이콘 색상 */
+body.dark-mode .service-button:nth-child(1) i { color: #e74c3c; opacity: 0.9; }
+body.dark-mode .service-button:nth-child(2) i { color: #3498db; opacity: 0.9; }
+body.dark-mode .service-button:nth-child(3) i { color: #2ecc71; opacity: 0.9; }
+body.dark-mode .service-button:nth-child(4) i { color: #f39c12; opacity: 0.9; }
+
+/* 다크모드 텍스트 색상 */
+body.dark-mode .service-button span {
+    color: #fff;
+}

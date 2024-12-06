@@ -1,0 +1,453 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+/* 각 페이지의 CSS 파일 상단에 추가 */
+.content-wrapper {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.content-wrapper.ready {
+    opacity: 1;
+    visibility: visible;
+}
+
+.controls {
+    padding: 2rem;
+}
+
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader.hidden {
+    display: none;
+}
+
+.disease-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.disease-item {
+    background: linear-gradient(135deg, #fafafa, #fff);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.disease-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.disease-item i {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: #1a73e8;
+}
+
+.disease-item h2 {
+    font-size: 3rem;
+    color: #212529;
+    margin-bottom: 1.5rem;
+}
+
+.disease-item p {
+    font-size: 2rem;
+    color: #495057;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.disease-item ul {
+    list-style: none;
+    padding: 0;
+}
+
+.disease-item li {
+    font-size: 1.8rem;
+    color: #666;
+    margin-bottom: 1rem;
+    padding-left: 1.8rem;
+    position: relative;
+}
+
+.disease-item li::before {
+    content: "•";
+    color: #1a73e8;
+    position: absolute;
+    left: 0;
+}
+
+/* 고대비 모드 */
+body.high-contrast .disease-item {
+    background: #000;
+    border: 2px solid #fff;
+}
+
+body.high-contrast .disease-item:hover {
+    background: #333;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+body.high-contrast .disease-item h2,
+body.high-contrast .disease-item p,
+body.high-contrast .disease-item li,
+body.high-contrast .disease-item i {
+    color: #fff;
+}
+
+body.high-contrast .disease-item li::before {
+    color: #fff;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+    .disease-list {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .controls {
+        margin: 1rem;
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .disease-item {
+        padding: 1.5rem;
+    }
+
+    .disease-item h2 {
+        font-size: 2.5rem;
+    }
+
+    .disease-item p {
+        font-size: 1.8rem;
+    }
+
+    .disease-item li {
+        font-size: 1.6rem;
+    }
+
+    .disease-item i {
+        font-size: 2.8rem;
+    }
+
+    .controls {
+        margin: 1rem;
+        padding: 0;
+    }
+}
+
+/* 각 질병 항목별 색상 스타일 */
+.disease-item:nth-child(1) {
+    background: linear-gradient(135deg, #ffeaea, #fff);
+    box-shadow: 0 2px 10px rgba(231, 76, 60, 0.1);
+}
+
+.disease-item:nth-child(2) {
+    background: linear-gradient(135deg, #e8f4ff, #fff);
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.1);
+}
+
+.disease-item:nth-child(3) {
+    background: linear-gradient(135deg, #e8fff0, #fff);
+    box-shadow: 0 2px 10px rgba(46, 204, 113, 0.1);
+}
+
+.disease-item:nth-child(4) {
+    background: linear-gradient(135deg, #e1f5fe, #fff);
+    box-shadow: 0 2px 10px rgba(3, 169, 244, 0.1);
+}
+
+.disease-item:nth-child(5) {
+    background: linear-gradient(135deg, #e8eaf6, #fff);
+    box-shadow: 0 2px 10px rgba(63, 81, 181, 0.1);
+}
+
+.disease-item:nth-child(6) {
+    background: linear-gradient(135deg, #fff3e0, #fff);
+    box-shadow: 0 2px 10px rgba(255, 152, 0, 0.1);
+}
+
+.disease-item:nth-child(7) {
+    background: linear-gradient(135deg, #f3e5f5, #fff);
+    box-shadow: 0 2px 10px rgba(156, 39, 176, 0.1);
+}
+
+.disease-item:nth-child(8) {
+    background: linear-gradient(135deg, #e0f2f1, #fff);
+    box-shadow: 0 2px 10px rgba(0, 150, 136, 0.1);
+}
+
+.disease-item:nth-child(9) {
+    background: linear-gradient(135deg, #fbe9e7, #fff);
+    box-shadow: 0 2px 10px rgba(255, 87, 34, 0.1);
+}
+
+.disease-item:nth-child(10) {
+    background: linear-gradient(135deg, #efebe9, #fff);
+    box-shadow: 0 2px 10px rgba(121, 85, 72, 0.1);
+}
+
+/* 아이콘 색상 */
+.disease-item:nth-child(1) i {
+    color: #e74c3c;
+}
+
+.disease-item:nth-child(2) i {
+    color: #3498db;
+}
+
+.disease-item:nth-child(3) i {
+    color: #2ecc71;
+}
+
+.disease-item:nth-child(4) i {
+    color: #03a9f4;
+}
+
+.disease-item:nth-child(5) i {
+    color: #3f51b5;
+}
+
+.disease-item:nth-child(6) i {
+    color: #ff9800;
+}
+
+.disease-item:nth-child(7) i {
+    color: #9c27b0;
+}
+
+.disease-item:nth-child(8) i {
+    color: #009688;
+}
+
+.disease-item:nth-child(9) i {
+    color: #ff5722;
+}
+
+.disease-item:nth-child(10) i {
+    color: #795548;
+}
+
+/* 리스트 점(bullet point) 색상 */
+.disease-item:nth-child(1) li::before {
+    color: #e74c3c;
+}
+
+.disease-item:nth-child(2) li::before {
+    color: #3498db;
+}
+
+.disease-item:nth-child(3) li::before {
+    color: #2ecc71;
+}
+
+.disease-item:nth-child(4) li::before {
+    color: #03a9f4;
+}
+
+.disease-item:nth-child(5) li::before {
+    color: #3f51b5;
+}
+
+.disease-item:nth-child(6) li::before {
+    color: #ff9800;
+}
+
+.disease-item:nth-child(7) li::before {
+    color: #9c27b0;
+}
+
+.disease-item:nth-child(8) li::before {
+    color: #009688;
+}
+
+.disease-item:nth-child(9) li::before {
+    color: #ff5722;
+}
+
+.disease-item:nth-child(10) li::before {
+    color: #795548;
+}
+
+/* 호버 효과 */
+.disease-item:nth-child(1):hover {
+    background: linear-gradient(135deg, #ffe0e0, #ffeaea);
+}
+
+.disease-item:nth-child(2):hover {
+    background: linear-gradient(135deg, #d4ebff, #e8f4ff);
+}
+
+.disease-item:nth-child(3):hover {
+    background: linear-gradient(135deg, #d4ffe2, #e8fff0);
+}
+
+.disease-item:nth-child(4):hover {
+    background: linear-gradient(135deg, #b3e5fc, #e1f5fe);
+}
+
+.disease-item:nth-child(5):hover {
+    background: linear-gradient(135deg, #c5cae9, #e8eaf6);
+}
+
+.disease-item:nth-child(6):hover {
+    background: linear-gradient(135deg, #ffe0b2, #fff3e0);
+}
+
+.disease-item:nth-child(7):hover {
+    background: linear-gradient(135deg, #e1bee7, #f3e5f5);
+}
+
+.disease-item:nth-child(8):hover {
+    background: linear-gradient(135deg, #b2dfdb, #e0f2f1);
+}
+
+.disease-item:nth-child(9):hover {
+    background: linear-gradient(135deg, #ffccbc, #fbe9e7);
+}
+
+.disease-item:nth-child(10):hover {
+    background: linear-gradient(135deg, #d7ccc8, #efebe9);
+}
+
+/* 다크모드 스타일 */
+body.dark-mode {
+    background-color: #121212;
+    color: #fff;
+}
+
+body.dark-mode .header {
+    color: #fff;
+}
+
+/* 질병 항목 다크모드 */
+body.dark-mode .disease-item {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .disease-item:hover {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.25), #2d2d2d);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .disease-item h2,
+body.dark-mode .disease-item p,
+body.dark-mode .disease-item li {
+    color: #fff;
+}
+
+/* 각 질병 항목별 색상 스타일 */
+body.dark-mode .disease-item:nth-child(1) {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(231, 76, 60, 0.2);
+}
+
+body.dark-mode .disease-item:nth-child(2) {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.2);
+}
+
+body.dark-mode .disease-item:nth-child(3) {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(46, 204, 113, 0.2);
+}
+
+body.dark-mode .disease-item:nth-child(4) {
+    background: linear-gradient(135deg, rgba(3, 169, 244, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(3, 169, 244, 0.2);
+}
+
+body.dark-mode .disease-item:nth-child(5) {
+    background: linear-gradient(135deg, rgba(63, 81, 181, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(63, 81, 181, 0.2);
+}
+
+body.dark-mode .disease-item:nth-child(6) {
+    background: linear-gradient(135deg, rgba(255, 152, 0, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(255, 152, 0, 0.2);
+}
+
+body.dark-mode .disease-item:nth-child(7) {
+    background: linear-gradient(135deg, rgba(156, 39, 176, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(156, 39, 176, 0.2);
+}
+
+body.dark-mode .disease-item:nth-child(8) {
+    background: linear-gradient(135deg, rgba(0, 150, 136, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(0, 150, 136, 0.2);
+}
+
+body.dark-mode .disease-item:nth-child(9) {
+    background: linear-gradient(135deg, rgba(255, 87, 34, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(255, 87, 34, 0.2);
+}
+
+body.dark-mode .disease-item:nth-child(10) {
+    background: linear-gradient(135deg, rgba(121, 85, 72, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(121, 85, 72, 0.2);
+}
+
+/* 아이콘 색상 유지 */
+body.dark-mode .disease-item i {
+    opacity: 0.9;
+}
+
+/* 리스트 점(bullet point) 색상 유지 */
+body.dark-mode .disease-item li::before {
+    opacity: 0.9;
+}
+
+/* 컨트롤 버튼 다크모드 */
+body.dark-mode .controls__item {
+    color: #fff;
+}
+
+body.dark-mode .controls__item:nth-child(1) {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.2);
+}
+
+body.dark-mode .controls__item:nth-child(2) {
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(155, 89, 182, 0.2);
+}
+
+body.dark-mode .controls__item:hover {
+    background: #2d2d2d;
+}
+
+body.dark-mode .controls__item:nth-child(1) i {
+    color: #3498db;
+    opacity: 0.9;
+}
+
+body.dark-mode .controls__item:nth-child(2) i {
+    color: #9b59b6;
+    opacity: 0.9;
+}
+
+body.dark-mode .footer {
+    background-color: #121212;
+}
+
+body.dark-mode .footer p {
+    color: #6c757d;
+} 

@@ -1,67 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko-KR">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>주변 보건소 찾기</title>
-    <style>
-        .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
-        .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
-        .map_wrap {position:relative;width:100%;height:500px;}
-        #menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.9);z-index: 1;font-size:12px;border-radius: 10px;}
-        #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
-        #placesList li {list-style: none;}
-        #placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
-        #placesList .item span {display: block;margin-top:4px;}
-        #placesList .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-        #placesList .item .info{padding:10px 0 10px 55px;}
-        #placesList .info .gray {color:#8a8a8a;}
-        #placesList .info .jibun {padding-left:26px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
-        #placesList .info .tel {color:#009900;}
-        #placesList .item .markerbg {float:left;position:absolute;width:36px;height:37px;margin:10px 0 0 10px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
-        #pagination {margin:10px auto;text-align: center;}
-        #pagination a {display:inline-block;margin-right:10px;}
-        #pagination .on {font-weight: bold; cursor: default;color:#777;}
-        .home-button {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 8px 15px;
-            background-color: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 5px;
-            text-decoration: none;
-            color: #212529;
-            z-index: 1000;
-            transition: all 0.2s ease-in-out;
-        }
-        .home-button:hover {
-            background-color: #e9ecef;
-            transform: translateY(-2px);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-    </style>
-    <meta name="localStorage-path" content="/">
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=67f41491618b9b18f6e6b56b4a9d61f4&libraries=services"></script>
+    <link rel="stylesheet" href="/css/location.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/guide.css">
+    <script src="/scripts/navigation.js"></script>
+    <script src="/scripts/guide.js"></script>
+    <script src="/scripts/contrast.js"></script>
+    <script src="/scripts/darkMode.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <a href="/main.html" class="home-button">🏠 홈으로</a>
-    <div class="map_wrap">
-        <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-        <div id="menu_wrap" class="bg_white">
-            <div class="option">
-                <div>
-                    <form onsubmit="searchPlaces(); return false;">
-                        키워드 : <input type="text" id="keyword" size="15" value="보건소"> 
-                        <button type="submit">검색하기</button> 
-                    </form>
-                </div>
-            </div>
-            <hr>
-            <ul id="placesList"></ul>
-            <div id="pagination"></div>
-        </div>
+    <div class="loader">
+        <i class="fas fa-circle-notch fa-spin fa-3x"></i>
     </div>
 
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=67f41491618b9b18f6e6b56b4a9d61f4&libraries=services&autoload=true"></script>
-    <script src="location.js"></script>
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="header">
+                <p>주변 보건소 찾기</p>
+            </div>
+            
+            <div class="content">
+                <div class="controls">
+                    <button class="controls__item" onclick="showGuide()">
+                        <i class="fas fa-question-circle"></i>
+                        도움말
+                    </button>
+                    <button class="controls__item" onclick="toggleHighContrast()">
+                        <i class="fas fa-adjust"></i>
+                        고대비
+                    </button>
+                    <button class="controls__item" onclick="goToHome()">
+                        <i class="fas fa-home"></i>
+                        홈으로
+                    </button>
+                </div>
+                
+                <div class="location-container">
+                    <div class="map-section">
+                        <div id="map"></div>
+                    </div>
+                    
+                    <div class="search-section">
+                        <div id="result-wrap" class="bg_white">
+                            <ul id="placesList"></ul>
+                            <div id="pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <input type="hidden" id="keyword" value="보건소">
+    <script src="/scripts/location.js"></script>
+    <script src="/scripts/guide.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.querySelector('.loader').classList.add('hidden');
+                document.querySelector('.content-wrapper').classList.add('ready');
+            }, 150);
+        });
+    </script>
+
+    <!-- 도움말 모달 -->
+    <div class="modal-overlay" id="guideModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeGuide()">닫기</button>
+            <h2>주변 보건소 찾기</h2>
+            
+            <div class="guide-item">
+                <h3>보건소 위치 검색</h3>
+                <p>1. 현재 위치를 불러와서 자동으로 검색해줍니다.</p>
+                <p>1. 검색결과를 클릭하면 위치를 확인할 수 있습니다.</p>
+                <p>2. 복사 버튼을 누르면 주소 정보를 복사할 수 있습니다.</p>
+            </div>
+    
+            <div class="guide-item">
+                <h3>안내사항</h3>
+                <p>- 검색이 되지 않는 경우 위치정보를 활성화 해주세요.</p>
+                <p>- 사용자의 위치정보는 안전하게 보호됩니다.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('darkMode');
+            
+            if (savedTheme === 'true' || (savedTheme === null && prefersDarkMode)) {
+                document.body.classList.add('dark-mode');
+            }
+    
+            const isHighContrast = localStorage.getItem('highContrast') === 'true';
+            if (isHighContrast) {
+                document.body.classList.add('high-contrast');
+            }
+    
+            setTimeout(() => {
+                document.querySelector('.loader').classList.add('hidden');
+                document.querySelector('.content-wrapper').classList.add('ready');
+            }, 100);
+        });
+    </script>
 </body>
 </html>

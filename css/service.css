@@ -1,3 +1,31 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+/* 각 페이지의 CSS 파일 상단에 추가 */
+.content-wrapper {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.content-wrapper.ready {
+    opacity: 1;
+    visibility: visible;
+}
+
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader.hidden {
+    display: none;
+}
+
 .container {
     width: 100%;
     margin: 0 auto;
@@ -106,4 +134,29 @@ h1 {
     h1 {
         margin: 30px;
     }
+}
+
+/* 고대비 모드 텍스트 색상 */
+body.high-contrast h1,
+body.high-contrast h2,
+body.high-contrast p,
+body.high-contrast li,
+body.high-contrast .home-button,
+body.high-contrast .back-button {
+    color: #fff;
+}
+
+body.high-contrast .home-button,
+body.high-contrast .back-button {
+    background-color: #000;
+    border: 2px solid #fff;
+}
+
+body.high-contrast .home-button:hover,
+body.high-contrast .back-button:hover {
+    background-color: #333;
+}
+
+body.high-contrast .home-button i {
+    color: #fff;
 }

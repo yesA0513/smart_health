@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>보건소 알림e - 진료 예약</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/reservation.css">
+    <link rel="stylesheet" href="/css/guide.css">
+    <meta name="localStorage-path" content="/">
+    <script src="/scripts/highContrast.js"></script>
+    <script src="/scripts/darkMode.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/scripts/navigation.js"></script>
+</head>
+<body>
+    <!-- 로딩 표시 -->
+    <div class="loader">
+        <i class="fas fa-circle-notch fa-spin fa-3x"></i>
+    </div>
+
+    <!-- 기존 컨텐츠를 wrapper로 감싸기 -->
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="header">
+                <p>진료 예약</p>
+            </div>
+            
+            <div class="content">
+                <div class="controls">
+                    <button class="controls__item" onclick="showGuide()">
+                        <i class="fas fa-question-circle"></i>
+                        도움말
+                    </button>
+                    <button class="controls__item" onclick="toggleHighContrast()">
+                        <i class="fas fa-adjust"></i>
+                        고대비
+                    </button>
+                    <!-- 홈으로 가기 버튼 수정 -->
+                    <button class="controls__item" onclick="goToHome()">
+                        <i class="fas fa-home"></i>
+                        홈으로
+                    </button>
+                </div>
+
+                <div id="step-1" class="step active">
+                    <h2>서비스 선택</h2>
+                    <div class="service-buttons">
+                        <button class="service-button" data-service="진료">
+                            <i class="fas fa-syringe"></i>
+                            <span>진료</span>
+                        </button>
+                        <button class="service-button" data-service="예방 접종">
+                            <i class="fas fa-shield-virus"></i>
+                            <span>예방 접종</span>
+                        </button>
+                        <button class="service-button" data-service="건강 검진">
+                            <i class="fas fa-heartbeat"></i>
+                            <span>건강 검진</span>
+                        </button>
+                        <button class="service-button" data-service="상담">
+                            <i class="fas fa-comments"></i>
+                            <span>상담</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="step-2" class="step">
+                    <h2>날짜와 시간 선택</h2>
+                    <div class="input-group">
+                        <label for="date">날짜</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    
+                    <div class="time-slots">
+                        <button class="time-slot" data-time="09:00">09:00</button>
+                        <button class="time-slot" data-time="09:20">09:20</button>
+                        <button class="time-slot" data-time="09:40">09:40</button>
+                        <button class="time-slot" data-time="10:00">10:00</button>
+                        <button class="time-slot" data-time="10:20">10:20</button>
+                        <button class="time-slot" data-time="10:40">10:40</button>
+                        <button class="time-slot" data-time="11:00">11:00</button>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button id="back-to-step-1" class="controls__item">
+                            <i class="fas fa-arrow-left"></i>
+                            이전
+                        </button>
+                        <button id="next-to-step-3" class="controls__item">
+                            <i class="fas fa-arrow-right"></i>
+                            다음
+                        </button>
+                    </div>
+                </div>
+
+                <div id="step-3" class="step">
+                    <h2>예약자 정보</h2>
+                    <div class="input-group">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" placeholder="이름을 입력하세요" required>
+                        
+                        <label for="phone">전화번호</label>
+                        <input type="tel" id="phone" placeholder="전화번호를 입력하세요" required>
+                        
+                        <label for="birthday">생년월일</label>
+                        <input type="date" id="birthday" required>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button id="back-to-step-2" class="controls__item">
+                            <i class="fas fa-arrow-left"></i>
+                            이전
+                        </button>
+                        <button id="submit" class="controls__item">
+                            <i class="fas fa-check"></i>
+                            예약하기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>보건소 알림e</p>
+            <p>Copyright 2024 | 김노아,박준현 | All rights reserved.</p>
+        </div>
+    </div>
+
+    <!-- 도움말 모달 -->
+    <div class="modal-overlay" id="guideModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeGuide()">닫기</button>
+            <h2>진료 예약 안내</h2>
+            
+            <div class="guide-item">
+                <h3>예약 방법</h3>
+                <p>1. 원하시는 서비스를 선택해주세요.</p>
+                <p>2. 날짜와 시간을 선택해주세요.</p>
+                <p>3. 예약자 정보를 입력해주세요.</p>
+            </div>
+
+            <div class="guide-item">
+                <h3>주의사항</h3>
+                <p>- 예약 시간 10분 전까지 도착해주세요.</p>
+                <p>- 예약 취소는 하루 전까지 가능합니다.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/reservation.js"></script>
+    <script src="/scripts/guide.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('darkMode');
+        
+        if (savedTheme === 'true' || (savedTheme === null && prefersDarkMode)) {
+            document.body.classList.add('dark-mode');
+        }
+
+        const isHighContrast = localStorage.getItem('highContrast') === 'true';
+        if (isHighContrast) {
+            document.body.classList.add('high-contrast');
+        }
+
+        setTimeout(() => {
+            document.querySelector('.loader').classList.add('hidden');
+            document.querySelector('.content-wrapper').classList.add('ready');
+        }, 100);
+    });
+    </script>
+</body>
+</html>

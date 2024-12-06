@@ -1,0 +1,343 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+/* 각 페이지의 CSS 파일 상단에 추가 */
+.content-wrapper {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.content-wrapper.ready {
+    opacity: 1;
+    visibility: visible;
+}
+
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader.hidden {
+    display: none;
+}
+
+.content__form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem 3rem;  /* 좌우 패딩 증가 */
+    background: linear-gradient(135deg, #e8f4ff, #fff);
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.1);
+}
+
+.input-group {
+    margin: 2rem 0;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin: 1rem 0 0.5rem;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #212529;
+}
+
+input, select {
+    width: 100%;  /* 전체 너비로 변경 */
+    padding: 15px;
+    font-size: 1.6rem;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    font-family: "Pretendard", sans-serif;
+    box-sizing: border-box;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.8rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #d4ebff, #e8f4ff);
+    color: #212529;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+}
+
+.submit-btn i {
+    font-size: 1.8rem;
+    color: #3498db;
+}
+
+.results-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem 3rem;  /* 좌우 패딩 증가 */
+    background: linear-gradient(135deg, #e8fff0, #fff);
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(46, 204, 113, 0.1);
+}
+
+.checkup-list {
+    list-style: none;
+    padding: 0;
+    width: 100%;  /* 너비 추가 */
+}
+
+
+.checkup-list li {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    font-size: 1.6rem;
+    color: #212529;
+    width: 100%;  /* 너비 추가 */
+    box-sizing: border-box;  /* 박스 사이징 추가 */
+}
+
+/* 고대비 모드 스타일 */
+body.high-contrast .content__form,
+body.high-contrast .results-container {
+    background: #000;
+    border: 2px solid #fff;
+}
+
+body.high-contrast input,
+body.high-contrast select {
+    background: #000;
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+body.high-contrast label {
+    color: #fff;
+}
+
+body.high-contrast .submit-btn {
+    background: #000;
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+body.high-contrast .submit-btn i {
+    color: #fff;
+}
+
+body.high-contrast .results-content h2 {
+    color: #fff;
+}
+
+body.high-contrast .checkup-list li {
+    background: #333;
+    color: #fff;
+}
+
+/* 다크모드 스타일 */
+body.dark-mode {
+    background-color: #121212;
+}
+
+body.dark-mode .header {
+    color: #fff;
+}
+
+body.dark-mode .content__form {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.2);
+}
+
+body.dark-mode .input-group label {
+    color: #fff;
+}
+
+body.dark-mode .input-group input,
+body.dark-mode .input-group select {
+    background: #2d2d2d;
+    border: 1px solid #444;
+    color: #fff;
+}
+
+body.dark-mode .submit-btn {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), #1e1e1e);
+    color: #fff;
+}
+
+body.dark-mode .submit-btn:hover {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.25), #2d2d2d);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+body.dark-mode .submit-btn i {
+    color: #3498db;
+    opacity: 0.9;
+}
+
+body.dark-mode .results-container {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(46, 204, 113, 0.2);
+}
+
+body.dark-mode .results-content h2 {
+    color: #fff;
+}
+
+body.dark-mode .checkup-list li {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+/* 컨트롤 버튼 스타일 */
+body.dark-mode .controls__item {
+    color: #fff;
+}
+
+body.dark-mode .controls__item:nth-child(1) {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.2);
+}
+
+body.dark-mode .controls__item:nth-child(2) {
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.15), #1e1e1e);
+    box-shadow: 0 2px 10px rgba(155, 89, 182, 0.2);
+}
+
+body.dark-mode .controls__item:hover {
+    background: #2d2d2d;
+}
+
+body.dark-mode .controls__item:nth-child(1) i {
+    color: #3498db;
+    opacity: 0.9;
+}
+
+body.dark-mode .controls__item:nth-child(2) i {
+    color: #9b59b6;
+    opacity: 0.9;
+}
+
+body.dark-mode .footer {
+    background-color: #121212;
+}
+
+body.dark-mode .footer p {
+    color: #6c757d;
+}
+
+/* 모달 다크모드 스타일 */
+body.dark-mode .modal-content {
+    background: #1e1e1e;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .close-btn {
+    color: #fff;
+    background: #2d2d2d;
+}
+
+body.dark-mode .guide-item h3 {
+    color: #fff;
+}
+
+body.dark-mode .guide-item p {
+    color: #adb5bd;
+}
+
+body.dark-mode .close-btn {
+    background: linear-gradient(135deg, #ff4d4d, #ff6b6b);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .content__form,
+    .results-container {
+        margin: 2rem;
+        padding: 2rem;
+    }
+
+    label {
+        font-size: 1.6rem;
+    }
+
+    input,
+    select {
+        font-size: 1.4rem;
+    }
+
+    .submit-btn {
+        font-size: 1.6rem;
+    }
+
+    .results-content h2 {
+        font-size: 2rem;
+    }
+
+    .checkup-list li {
+        font-size: 1.4rem;
+    }
+
+    .controls {
+        margin: 1rem;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .content__form,
+    .results-container,
+    .result-container {
+        margin: 1rem;  /* 좌우 여백 조정 */
+        padding: 1rem;  /* 내부 여백 조정 */
+        width: auto;  /* 자동 너비 설정 */
+        max-width: none;  /* 최대 너비 제한 해제 */
+    }
+
+    .input-group {
+        margin: 1.5rem 0;  /* 입력 그룹 여백 조정 */
+    }
+
+    .controls {
+        margin: 1rem;
+        margin-bottom: 2rem;
+        padding: 0;
+    }
+
+    /* 모바일에서의 추가 조정 */
+    @media (max-width: 768px) {
+        .content__form,
+        .results-container,
+        .result-container {
+            margin: 1rem;
+            padding: 1rem;
+        }
+
+        label {
+            font-size: 1.6rem;
+        }
+
+        input, select {
+            font-size: 1.4rem;
+        }
+
+        .submit-btn {
+            font-size: 1.6rem;
+        }
+    }
+}

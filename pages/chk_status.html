@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>보건소 알림e - 현황 조회</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/chk_status.css">
+    <link rel="stylesheet" href="/css/guide.css">
+    <meta name="localStorage-path" content="/">
+    <script src="/scripts/highContrast.js"></script>
+    <script src="/scripts/darkMode.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/scripts/navigation.js"></script>
+</head>
+<body>
+    <!-- 로딩 표시 -->
+    <div class="loader">
+        <i class="fas fa-circle-notch fa-spin fa-3x"></i>
+    </div>
+
+    <!-- 기존 컨텐츠를 wrapper로 감싸기 -->
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="header">
+                <p>진료검사 현황 조회</p>
+            </div>
+            
+            <div class="content">
+                <div class="controls">
+                    <button class="controls__item" onclick="showGuide()">
+                        <i class="fas fa-question-circle"></i>
+                        도움말
+                    </button>
+                    <button class="controls__item" onclick="toggleHighContrast()">
+                        <i class="fas fa-adjust"></i>
+                        고대비
+                    </button>
+                    <!-- 홈으로 가기 버튼 수정 -->
+                    <button class="controls__item" onclick="goToHome()">
+                        <i class="fas fa-home"></i>
+                        홈으로
+                    </button>
+                </div>
+
+                <div id="checkup-form" class="content__form">
+                    <div class="input-group">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" placeholder="이름을 입력하세요" required>
+                        
+                        <label for="dob">생년월일</label>
+                        <input type="date" id="dob" required>
+                        
+                        <label for="ssn">주민등록번호</label>
+                        <input type="text" id="ssn" placeholder="주민등록번호를 입력하세요" maxlength="13" required>
+                    </div>
+
+                    <button type="submit" id="checkup-btn" class="submit-btn">
+                        <i class="fas fa-search"></i>
+                        진료 현황 조회
+                    </button>
+                </div>
+
+                <div id="checkup-result" class="result-container" style="display:none;">
+                    <div class="result-content">
+                        <h2>진료 현황</h2>
+                        <p id="name-result"></p>
+                        <p id="dob-result"></p>
+                        <p id="checkup-history"></p>
+                        <button id="back-btn" class="controls__item">
+                            <i class="fas fa-arrow-left"></i>
+                            돌아가기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>보건소 알림e</p>
+            <p>Copyright 2024 | 김노아,박준현 | All rights reserved.</p>
+        </div>
+    </div>
+
+    <!-- 도움말 모달 -->
+    <div class="modal-overlay" id="guideModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeGuide()">닫기</button>
+            <h2>진료검사 현황 조회 안내</h2>
+            
+            <div class="guide-item">
+                <h3>조회 방법</h3>
+                <p>1. 이름을 입력해주세요.</p>
+                <p>2. 생년월일을 선택해주세요.</p>
+                <p>3. 주민등록번호를 입력해주세요.</p>
+            </div>
+
+            <div class="guide-item">
+                <h3>주의사항</h3>
+                <p>- 개인정보는 안전하게 보호됩니다.</p>
+                <p>- 정확한 정보를 입력해주세요.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/chk_status.js"></script>
+    <script src="/scripts/guide.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('darkMode');
+        
+        if (savedTheme === 'true' || (savedTheme === null && prefersDarkMode)) {
+            document.body.classList.add('dark-mode');
+        }
+
+        const isHighContrast = localStorage.getItem('highContrast') === 'true';
+        if (isHighContrast) {
+            document.body.classList.add('high-contrast');
+        }
+
+        setTimeout(() => {
+            document.querySelector('.loader').classList.add('hidden');
+            document.querySelector('.content-wrapper').classList.add('ready');
+        }, 100);
+    });
+    </script>
+</body>
+</html>
