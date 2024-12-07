@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주변 약국 찾기</title>
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=67f41491618b9b18f6e6b56b4a9d61f4&libraries=services"></script>
+    <link rel="stylesheet" href="/css/pharmacy.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/guide.css">
+    <script src="/scripts/navigation.js"></script>
+    <script src="/scripts/guide.js"></script>
+    <script src="/scripts/contrast.js"></script>
+    <script src="/scripts/darkMode.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="loader">
+        <i class="fas fa-circle-notch fa-spin fa-3x"></i>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="header">
+                <p>주변 약국 찾기</p>
+            </div>
+            
+            <div class="content">
+                <div class="controls">
+                    <button class="controls__item" onclick="showGuide()">
+                        <i class="fas fa-question-circle"></i>
+                        도움말
+                    </button>
+                    <button class="controls__item" onclick="toggleHighContrast()">
+                        <i class="fas fa-adjust"></i>
+                        고대비
+                    </button>
+                    <button class="controls__item" onclick="goToHome()">
+                        <i class="fas fa-home"></i>
+                        홈으로
+                    </button>
+                </div>
+                
+                <div class="location-container">
+                    <div class="map-section">
+                        <div id="map"></div>
+                    </div>
+                    
+                    <div class="search-section">
+                        <div id="result-wrap" class="bg_white">
+                            <ul id="placesList"></ul>
+                            <div id="pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <input type="hidden" id="keyword" value="약국">
+    <script src="/scripts/pharmacy.js"></script>
+    <script src="/scripts/guide.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.querySelector('.loader').classList.add('hidden');
+                document.querySelector('.content-wrapper').classList.add('ready');
+            }, 150);
+        });
+    </script>
+
+    <!-- 도움말 모달 -->
+    <div class="modal-overlay" id="guideModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeGuide()">닫기</button>
+            <h2>주변 약국 찾기</h2>
+            
+            <div class="guide-item">
+                <h3>약국 위치 검색</h3>
+                <p>1. 현재 위치를 불러와서 자동으로 검색해줍니다.</p>
+                <p>1. 검색결과를 클릭하면 위치를 확인할 수 있습니다.</p>
+                <p>2. 복사 버튼을 누르면 주소 정보를 복사할 수 있습니다.</p>
+            </div>
+    
+            <div class="guide-item">
+                <h3>안내사항</h3>
+                <p>- 검색이 되지 않는 경우 위치정보를 활성화 해주세요.</p>
+                <p>- 사용자의 위치정보는 안전하게 보호됩니다.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('darkMode');
+            
+            if (savedTheme === 'true' || (savedTheme === null && prefersDarkMode)) {
+                document.body.classList.add('dark-mode');
+            }
+    
+            const isHighContrast = localStorage.getItem('highContrast') === 'true';
+            if (isHighContrast) {
+                document.body.classList.add('high-contrast');
+            }
+    
+            setTimeout(() => {
+                document.querySelector('.loader').classList.add('hidden');
+                document.querySelector('.content-wrapper').classList.add('ready');
+            }, 100);
+        });
+    </script>
+</body>
+</html>
