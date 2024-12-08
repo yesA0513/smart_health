@@ -3,6 +3,7 @@
 <img src="https://github.com/user-attachments/assets/5693e2e7-7bd7-4ac3-904a-f6b0a12424b9" width="60%" >
 
 > 상명대 웹프로그래밍 기말 프로젝트
+
 노약자가 보다 편리한 방법으로 건강과 관련된 정보를 얻음으로써 의료 서비스의 접근성을 향상시키고자 함    
 
 # 스크린샷
