@@ -1,6 +1,6 @@
 # 스마트 보건
 
-<img src="https://github.com/user-attachments/assets/5693e2e7-7bd7-4ac3-904a-f6b0a12424b9" width="60%" >
+<img src="https://github.com/user-attachments/assets/5693e2e7-7bd7-4ac3-904a-f6b0a12424b9">
 
 > 상명대 웹프로그래밍 기말 프로젝트
 
