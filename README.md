@@ -10,6 +10,7 @@
   <img src="https://github.com/user-attachments/assets/e3d55a9c-614d-44f7-97b5-5fb43068738f" width="49%">
   <img src="https://github.com/user-attachments/assets/2cecc7a3-2b4c-4062-bc3b-8c89d78ca61a" width="49%">
 </p>
+
 # 주요 기능
 ### 1. 주요 질병 및 질환 목록
 질병 및 질환의 증상과 예방 방법을 제공하여 질병의 이해를 돕고 정보를 얻을 수 있도록 함.
