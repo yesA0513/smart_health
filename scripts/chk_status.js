@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let value = e.target.value.replace(/[^0-9]/g, ''); // 숫자만 남기기
         
         if (value.length > 6) {
-            value = value.slice(0, 6) + '-' + value.slice(6, 13);
+            value = value.slice(0, 6) + '-' + value.slice(6, 14);
         }
         
         e.target.value = value;
